@@ -38,8 +38,7 @@ RUN cd ~/ffmpeg_sources && wget http://webm.googlecode.com/files/libvpx-v1.3.0.t
 RUN cd ~/ffmpeg_sources && wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && tar xjvf ffmpeg-snapshot.tar.bz2 --owner root --group root --no-same-owner && cd ffmpeg && PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" && export PKG_CONFIG_PATH && ./configure --prefix="$HOME/ffmpeg_build" --extra-cflags="-I$HOME/ffmpeg_build/include" --extra-ldflags="-L$HOME/ffmpeg_build/lib" --bindir="$HOME/bin" --extra-libs="-ldl" --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree && make && make install && make distclean && hash -r 
 
 # Setup environment variables
-RUN echo "MANPATH_MAP $HOME/bin $HOME/ffmpeg_build/share/man" >> ~/.manpath
-RUN . ~/.profile
+RUN echo "MANPATH_MAP $HOME/bin $HOME/ffmpeg_build/share/man" >> ~/.manpath . ~/.profile
 
 
 
